@@ -1,13 +1,12 @@
-Hello World !!   This page is coming from source code kept at Github repository ---kharatramesh/tiaa1
-
-This is second line
-
-
-This is third line
-
-
-This is fourth line
-
-
-
-.................This is Fifth Line
+FROM centos:7
+MAINTAINER " Priar World"
+LABEL "App Devlopemnt"
+RUN yum install http* -y
+RUN yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+RUN yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
+RUN yum install yum-utils -y
+RUN yum-config-manager --enable remi-php72 -y
+RUN yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo -y
+EXPOSE 80
+RUN systemctl enable httpd
+CMD ["httpd", "-D", "FOREGROUND"]
